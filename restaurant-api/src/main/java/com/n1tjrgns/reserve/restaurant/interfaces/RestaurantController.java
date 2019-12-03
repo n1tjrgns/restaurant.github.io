@@ -13,6 +13,11 @@ public class RestaurantController {
     @GetMapping("/restaurants")
     public List<Restaurant> list(){
         List<Restaurant> restaurants = new ArrayList<>();
+
+        Restaurant restaurant = new Restaurant("Bob","Seoul");
+
+        restaurants.add(restaurant);
+
         return restaurants;
     }
 }

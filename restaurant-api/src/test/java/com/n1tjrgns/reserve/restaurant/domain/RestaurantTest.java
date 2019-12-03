@@ -14,11 +14,17 @@ public class RestaurantTest {
     }*/
 
 
-    /*@Test
+    @Test
     public void creation2(){
-        Restaurant restaurant = new Restaurant("Bob");
+        Restaurant restaurant = new Restaurant("Bob", "Seoul");
         assertThat(restaurant.getName(), is("Bob"));
-    }*/
+    }
+
+    @Test
+    public void creation3(){
+        Restaurant restaurant = new Restaurant("Bob", "Seoul");
+        assertThat(restaurant.getName(), is("Bob"));
+    }
 
     @Test
     public void information(){
