@@ -1,5 +1,6 @@
 package com.n1tjrgns.reserve.restaurant.interfaces;
 
+import com.n1tjrgns.reserve.restaurant.application.RestaurantService;
 import com.n1tjrgns.reserve.restaurant.domain.MenuItemRepository;
 import com.n1tjrgns.reserve.restaurant.domain.MenuItemRepositoryImpl;
 import com.n1tjrgns.reserve.restaurant.domain.RestaurantRepositoryImpl;
@@ -30,6 +31,9 @@ public class RestaurantControllerTest {
 
     @SpyBean(MenuItemRepositoryImpl.class)
     private MenuItemRepository menuItemRepository;
+
+    @SpyBean(RestaurantService.class)
+    private RestaurantService restaurantService;
 
     @Test
     public void list() throws Exception {
