@@ -1,9 +1,13 @@
 package com.n1tjrgns.reserve.restaurant.interfaces;
 
+import com.n1tjrgns.reserve.restaurant.domain.MenuItemRepository;
+import com.n1tjrgns.reserve.restaurant.domain.MenuItemRepositoryImpl;
+import com.n1tjrgns.reserve.restaurant.domain.RestaurantRepositoryImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -20,6 +24,13 @@ public class RestaurantControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    // 컨트롤러에 원하는 객체를 주입 가능
+    @SpyBean(RestaurantRepositoryImpl.class)
+    private RestaurantRepositoryImpl restaurantRepository;
+
+    @SpyBean(MenuItemRepositoryImpl.class)
+    private MenuItemRepository menuItemRepository;
+
     @Test
     public void list() throws Exception {
         mvc.perform(get("/restaurants"))
@@ -32,5 +43,14 @@ public class RestaurantControllerTest {
         mvc.perform(get("/restaurants"))
                 .andExpect(status().isOk()) //getMapping의 상태값 확인
                 .andExpect(content().string(containsString("\"name\":\"Bob\""))); //json 형태로
+    }
+
+    @Test
+    public void detail() throws Exception {
+        mvc.perform(get("restaurants/1"))
+                .andExpect(status().isOk())
+        .andExpect(content().string(containsString("\"id\":\"2020\""))) //json 형태로
+        .andExpect(content().string(containsString("\"name\":\"Food\""))) //json 형태로
+        .andExpect(content().string(containsString("Kimchi")));
     }
 }
